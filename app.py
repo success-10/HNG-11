@@ -10,14 +10,14 @@ def hello():
     visitor_name = request.args.get('visitor_name', 'Guest')
     client_ip = request.remote_addr
 
-    geo_res = requests.get(f'https://ipinfo.io/{client_ip}/json?token={IPINFO_TOKEN}')
-    geo_data = geo_res.json()
+    geo_request = requests.get(f'https://ipinfo.io/{client_ip}/json?token={IPINFO_TOKEN}')
+    geo_data = geo_request.json()
     location = geo_data.get("city") 
     # print(f"Geo Data: {geo_data}")
 
     # Use OpenWeather to get temperature
-    weather_res = requests.get(f'http://api.openweathermap.org/data/2.5/weather?q={location}&appid={OPENWEATHER_API_KEY}&units=metric')
-    weather_data = weather_res.json()
+    weather_request = requests.get(f'http://api.openweathermap.org/data/2.5/weather?q={location}&appid={OPENWEATHER_API_KEY}&units=metric')
+    weather_data = weather_request.json()
     temperature = weather_data.get('main', {}).get('temp', 'Unknown')
     
     
