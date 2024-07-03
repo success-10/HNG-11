@@ -12,7 +12,7 @@ def hello():
 
     geo_request = requests.get(f'https://ipinfo.io/{client_ip}/json?token={IPINFO_TOKEN}')
     geo_data = geo_request.json()
-    location = geo_data.get("city") 
+    location = geo_data.get("city", "lagos")
     # print(f"Geo Data: {geo_data}")
 
     # Use OpenWeather to get temperature
